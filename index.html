@@ -13,34 +13,27 @@
 <script type="text/javascript" src="js/app/autotyper.js"></script>
 <script type="text/javascript">
 $(function(){
-	Autotyper.init({
-		phrase: 'The quick brown fox jumped over the lazy dog.',
-		speed: 100,
-		home: '$ ',
-		//	cursor: '&nbsp;&nbsp;',
-		cursorBG: '#fff',
-		delay: 2000,
-		4: {
-			pause: 1000,
-			speed: 400
-		},
-		10: {
-			pause: 2000,
-			speed: 400
-		},
-		19: {
-			pause: 2000,
-			rewind: 15,
-			speed: 100,
-			remaining: 'lazy dog lied beneath the quick jumping brown fox'
-		},
-		53: {
-			pause: 2000,
-			//	rewind: 0,
-			speed: 300,
-			remaining: ' ... '
-		}
-	});
+  var autotyper = Autotyper({
+    phrase: 'The ', //4
+    speed: 100,
+    home: '$ ',
+    //  cursor: '&nbsp;&nbsp;',
+    cursorBG: '#fff',
+    delay: 2000
+  }).type()
+    .pause(1000)
+    .add({characters: 'quick ', speed:400}) //10
+    .pause(2000)
+    .add({characters: 'brown fox', speed:400}) //19
+    .pause(2000)
+    .remove({characters:'quick brown fox', speed:100})
+    .add({characters: 'lazy dog lied beneath the quick jumping brown fox'})
+    .pause(2000)
+    .add({characters: ' ... ', speed: 600})
+    .pause(2000)
+    .rewind({spaces:5, speed: 200})
+    .pause(600)
+    .add({characters: '!'});
 });
 </script>
 </head>
